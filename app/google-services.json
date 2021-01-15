@@ -1,0 +1,85 @@
+{
+  "project_info": {
+    "project_number": "954264336221",
+    "firebase_url": "https://antrianklinikpln.firebaseio.com",
+    "project_id": "antrianklinikpln",
+    "storage_bucket": "antrianklinikpln.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:954264336221:android:134c97c5228627fd84dab4",
+        "android_client_info": {
+          "package_name": "com.example.antrianklinikpln"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "954264336221-k5b0cghci058hl145t36i1aivasc9vvq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.antrianklinikpln",
+            "certificate_hash": "6d2fa5eaa13ea301358a8e3d98a5b05873256626"
+          }
+        },
+        {
+          "client_id": "954264336221-j14avjincjbekvhu6gi9mcghqtdaait8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0Uu5wXQOfqvfsN1MPVu8a6Ou3D6ymMKo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "954264336221-j14avjincjbekvhu6gi9mcghqtdaait8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:954264336221:android:218ff24dcae1c96984dab4",
+        "android_client_info": {
+          "package_name": "com.example.klinik_pln"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "954264336221-r6gjpag76knpicq8g30r0tkn2mv9hcgi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.klinik_pln",
+            "certificate_hash": "6d2fa5eaa13ea301358a8e3d98a5b05873256626"
+          }
+        },
+        {
+          "client_id": "954264336221-j14avjincjbekvhu6gi9mcghqtdaait8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0Uu5wXQOfqvfsN1MPVu8a6Ou3D6ymMKo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "954264336221-j14avjincjbekvhu6gi9mcghqtdaait8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

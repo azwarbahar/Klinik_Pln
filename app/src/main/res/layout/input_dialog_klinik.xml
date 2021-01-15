@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginHorizontal="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    
+    <EditText
+        android:layout_marginTop="30dp"
+        android:id="@+id/input_nama_klinik"
+        android:hint="Nama Klinik"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:layout_marginTop="10dp"
+            android:maxLines="1"
+            android:id="@+id/url_klinik"
+            android:hint="URL Lokasi Klinik"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_help_URL"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="40dp"
+        android:text="*Buka Aplikasi Google Maps > Cari Lokasi Klinik > Pilih Bagikan > Pilih Salin Link untuk mengisi di atas."
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+</LinearLayout>

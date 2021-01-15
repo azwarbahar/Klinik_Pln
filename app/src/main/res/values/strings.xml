@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Antrian Poli</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="todo">TODO</string>
+
+    <string-array name="jam_kerja">
+        <item>Jam Kerja</item>
+        <item>08.00</item>
+        <item>11.00</item>
+        <item>14.00</item>
+    </string-array>
+
+    <string-array name="jenis_kelamin">
+        <item>Jenis kelamin</item>
+        <item>Laki - laki</item>
+        <item>Perempuan</item>
+    </string-array>
+
+</resources>

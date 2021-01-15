@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.klinik_pln">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".activity.ProfilePasienActivity"></activity>
+        <activity android:name=".antrian.antrianpertama.AntrianPertamaActivity" />
+        <activity android:name=".antrian.antriankedua.AntrianKeduaActivity" />
+        <activity android:name=".antrian.antrianketiga.AntrianKetigaActivity" />
+        <activity android:name=".antrian.ItemAntrianAdminActivity" />
+        <activity android:name=".klinik.MapsApotekActivity" />
+        <activity android:name=".histrory.HistoryPasienActivity" />
+        <activity android:name=".jadwal.JadwalActivity" />
+        <activity android:name=".activity.TambahKlinikActivity" />
+        <activity android:name=".activity.ProfilActivity" />
+        <activity android:name=".activity.CekDokterActivity" />
+        <activity android:name=".activity.AdminAdminActivity" />
+        <activity
+            android:name=".fragment.AllAntrianFragment"
+            tools:ignore="Instantiatable" />
+        <activity
+            android:name=".fragment.DoneFragment"
+            tools:ignore="Instantiatable" />
+        <activity
+            android:name=".fragment.MenungguFragment"
+            tools:ignore="Instantiatable" />
+        <activity android:name=".activity.AntrianAdminActivity" />
+        <activity android:name=".activity.DokterAdminActivity" />
+        <activity android:name=".activity.JalanApotekActivity" />
+        <activity android:name=".activity.CekAntrianActivity" />
+        <activity android:name=".activity.PasienAdminActivity" />
+        <activity android:name=".klinik.DetileKlinikActivity" />
+        <activity android:name=".activity.ProfilPasienActivity" />
+        <activity android:name=".klinik.KlinikAdminActivity" />
+        <activity android:name=".activity.AdminActivity" />
+        <activity android:name=".activity.DokterActivity" />
+        <activity
+            android:name=".activity.PasienActivity"
+            android:theme="@style/AppTheme.FullScreen1" />
+        <activity
+            android:name=".activity.SplashScreanActivity"
+            android:theme="@style/AppTheme.FullScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.LoginActivity"
+            android:theme="@style/AppTheme.FullScreen" />
+        <activity
+            android:name=".activity.RegisterActivity"
+            android:theme="@style/AppTheme.FullScreen" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyA3LJ-fWgNaPQpB3ejuI661lt69zqgjGbw" />
+    </application>
+
+</manifest>

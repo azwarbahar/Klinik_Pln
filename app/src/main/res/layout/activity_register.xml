@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/abu_abu"
+    tools:context=".activity.RegisterActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/topimage"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/top_bar_login" />
+
+    <LinearLayout
+        android:layout_width="190dp"
+        android:layout_height="190dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_alignBottom="@+id/topimage"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="50dp" >
+        <ImageView
+            android:layout_gravity="center"
+            android:src="@drawable/logopln"
+            android:layout_width="70dp"
+            android:layout_height="80dp"/>
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:textSize="14dp"
+            android:textColor="@color/birumudah"
+            android:textStyle="bold"
+            android:text="Poliklinik PT.PLN (Persero)"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:textSize="14dp"
+            android:textColor="@color/birumudah"
+            android:textStyle="bold"
+            android:text="Wilayah Sulselbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textregister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@id/topimage"
+        android:layout_alignRight="@id/topimage"
+        android:layout_alignBottom="@id/topimage"
+        android:layout_margin="20dp"
+        android:text="@string/register"
+        android:textColor="@color/putih"
+        android:textSize="20sp"
+        android:textStyle="normal" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_fullname"
+        android:layout_width="280dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/topimage"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="30dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/et_fullnama"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:backgroundTint="@color/transparan"
+                android:drawableLeft="@drawable/ic_person_black_24dp"
+                android:drawablePadding="25dp"
+                android:hint="Nama Lengkap"
+                android:inputType="text"
+                android:maxLength="20"
+                android:maxLines="1"
+                android:textColor="@color/abu_abu_hitam" />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_alamat"
+        android:layout_width="280dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/cv_fullname"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="15dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/et_alamat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:backgroundTint="@color/transparan"
+                android:drawableLeft="@drawable/ic_location_on_black_24dp"
+                android:drawablePadding="25dp"
+                android:hint="Alamat"
+                android:inputType="text"
+                android:maxLength="20"
+                android:maxLines="1"
+                android:textColor="@color/abu_abu_hitam" />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_jekel"
+        android:layout_width="280dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/cv_alamat"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="15dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/et_jekel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:backgroundTint="@color/transparan"
+                android:drawableLeft="@drawable/ic_baseline_gender"
+                android:drawablePadding="25dp"
+                android:hint="Jenis Kelamin"
+                android:inputType="text"
+                android:focusableInTouchMode="false"
+                android:maxLength="20"
+                android:maxLines="1"
+                android:textColor="@color/abu_abu_hitam" />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_tgl_lahir"
+        android:layout_width="280dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/cv_jekel"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="15dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/et_tgl_lahir"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="0dp"
+                android:textSize="12dp"
+                android:backgroundTint="@color/transparan"
+                android:drawableLeft="@drawable/ic_baseline_date_range_24"
+                android:drawablePadding="25dp"
+                android:focusableInTouchMode="false"
+                android:hint="Tanggal Lahir"
+                android:inputType="text"
+                android:maxLength="30"
+                android:maxLines="1"
+                android:textColor="@color/abu_abu_hitam" />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_telpon"
+        android:layout_width="280dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/cv_tgl_lahir"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="15dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/et_telpon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:backgroundTint="@color/transparan"
+                android:drawableLeft="@drawable/ic_phone_black_24dp"
+                android:drawablePadding="25dp"
+                android:hint="No Telpon"
+                android:inputType="number"
+                android:maxLength="20"
+                android:maxLines="1"
+                android:textColor="@color/abu_abu_hitam" />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_username"
+        android:layout_width="280dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/cv_telpon"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="15dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/et_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:backgroundTint="@color/transparan"
+                android:drawableLeft="@drawable/ic_person_pin_black_24dp"
+                android:drawablePadding="25dp"
+                android:hint="Username"
+                android:inputType="text"
+                android:maxLength="20"
+                android:maxLines="1"
+                android:textColor="@color/abu_abu_hitam" />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_password"
+        android:layout_width="280dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/cv_username"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="15dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/et_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:backgroundTint="@color/transparan"
+                android:drawableLeft="@drawable/ic_vpn_key_black_24dp"
+                android:drawablePadding="25dp"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:maxLength="20"
+                android:maxLines="1"
+                android:textColor="@color/abu_abu_hitam" />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tv_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cv_password"
+        android:layout_alignEnd="@id/cv_password"
+        android:layout_alignRight="@id/cv_password"
+        android:layout_marginTop="20dp"
+        android:text="Login"
+        android:textColor="@color/colorAccent"
+        android:textSize="12dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cv_password"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
+        android:layout_toLeftOf="@id/tv_login"
+        android:text="Already a member ? "
+        android:textColor="@color/abu_abu_hitam"
+        android:textSize="12dp" />
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="280dp"
+        android:layout_height="45dp"
+        android:layout_below="@+id/tv1"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_btn_login"
+        android:text="Register"
+        android:layout_marginBottom="20dp"
+        android:textColor="@color/putih"
+        android:textStyle="bold" />
+
+    </RelativeLayout>
+
+</androidx.core.widget.NestedScrollView>

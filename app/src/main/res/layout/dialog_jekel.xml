@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:gravity="center"
+    android:paddingVertical="15dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_laki"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginHorizontal="10dp"
+        android:text="Laki - laki"
+        android:textStyle="bold"
+        android:textColor="@color/hitam"
+        android:textSize="16dp" />
+
+    <View
+        android:background="@color/abu_abu_hitam"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+    <TextView
+        android:id="@+id/tv_perempuan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginHorizontal="10dp"
+        android:text="Perempuan"
+        android:textStyle="bold"
+        android:textColor="@color/hitam"
+        android:textSize="16dp" />
+
+</LinearLayout>

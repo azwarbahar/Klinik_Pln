@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#B1A605</color>
+    <color name="colorPrimaryTrans">#39B1A605</color>
+    <color name="colorPrimaryDark">#AD9500</color>
+    <color name="colorAccent">#0428E6</color>
+    <color name="abu_abu">#F8F8F8</color>
+    <color name="putih">#FFFFFF</color>
+    <color name="transparan">#00FFFFFF</color>
+    <color name="hitam">#000</color>
+    <color name="hitamburam">#353434</color>
+    <color name="hitamtrans">#C1000000</color>
+    <color name="abu_abu_hitam">#525252</color>
+    <color name="merah">#FF0000</color>
+    <color name="merahTrans">#22FF0000</color>
+    <color name="birumudah">#0068E2</color>
+    <color name="abu_mati">#AFAFAF</color>
+
+<!--    kuning Splashscrean-->
+    <color name="staryellow">#8B7308</color>
+    <color name="endyellow">#DDCF1A</color>
+
+    <color name="staryellow1">#796406</color>
+    <color name="endyellow1">#A5991F</color>
+    <color name="hijau">#04530C</color>
+    <color name="hijautrans">#4504530C</color>
+
+
+
+</resources>
