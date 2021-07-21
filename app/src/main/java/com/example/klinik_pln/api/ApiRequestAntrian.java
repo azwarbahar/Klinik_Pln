@@ -32,6 +32,10 @@ public interface ApiRequestAntrian {
     @GET("read_antrian_user_done.php")
     Call<List<getDataAntrianOneModel>> getAntrianRiwayat(@Query("nama_pasien") String nama_pasien);
 
+    @GET("read_antrian_user_status.php")
+    Call<List<getDataAntrianOneModel>> read_antrian_user_status(@Query("nama_pasien") String nama_pasien,
+                                                                @Query("status") String status);
+
     @GET("read_last_done_antrian.php")
     Call<ResponsModelTambah> getdatalastDone(@Query("jam_antrian") String jam_antrian,
                                              @Query("tanggal_antrian") String tanggal_antrian);

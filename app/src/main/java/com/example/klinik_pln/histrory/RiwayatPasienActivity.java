@@ -1,10 +1,6 @@
 package com.example.klinik_pln.histrory;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
+import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -13,16 +9,22 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+
 import com.example.klinik_pln.R;
 import com.example.klinik_pln.api.ApiRequestAntrian;
 import com.example.klinik_pln.api.RetroServerAntrian;
-import com.example.klinik_pln.histrory.adapter.RiwayatAdapter;
+import com.example.klinik_pln.histrory.adapter.RiwayatPagerAdapter;
+import com.example.klinik_pln.histrory.fragment.BatalFragment;
+import com.example.klinik_pln.histrory.fragment.SelesaiFragment;
 import com.example.klinik_pln.model.ResponsModelTambah;
 import com.example.klinik_pln.model.getDataAntrianOneModel;
+import com.google.android.material.tabs.TabLayout;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -31,7 +33,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class HistoryPasienActivity extends AppCompatActivity {
+public class RiwayatPasienActivity extends AppCompatActivity {
 
     private String tanggal;
     private String tanggal_db;
@@ -41,16 +43,17 @@ public class HistoryPasienActivity extends AppCompatActivity {
     private String status_antrian;
     private String kode_db;
 
+    private TabLayout tab_riwayat;
+    private ViewPager pager_riwayat;
+    private RiwayatPagerAdapter adapter;
+    private TextView tv_tanggal;
+    ProgressDialog pd;
+
     private TextView tv_no_antrian;
     private TextView tv_jam;
     private TextView tv_status;
-    private TextView tv_kosong;
 
     private RelativeLayout rl_hari_ini;
-
-    private RecyclerView rv_riwayat;
-
-    private ArrayList<getDataAntrianOneModel> oneModels;
 
     private View dialogView;
     private AlertDialog.Builder dialog;
@@ -61,15 +64,23 @@ public class HistoryPasienActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_history_pasien);
+        setContentView(R.layout.activity_riwayat_pasien);
 
-        rv_riwayat = findViewById(R.id.rv_riwayat);
-        tv_kosong = findViewById(R.id.tv_kosong);
+        tab_riwayat = findViewById(R.id.tab_riwayat);
+        pager_riwayat = findViewById(R.id.pager_riwayat);
+        adapter = new RiwayatPagerAdapter(getSupportFragmentManager());
+        pd = new ProgressDialog(this);
+
+        adapter = new RiwayatPagerAdapter(getSupportFragmentManager());
+        adapter.AddFragment(new SelesaiFragment(), "Selesai");
+        adapter.AddFragment(new BatalFragment(), "Batal");
+        pager_riwayat.setAdapter(adapter);
+        tab_riwayat.setupWithViewPager(pager_riwayat);
+
         tv_no_antrian = findViewById(R.id.tv_no_antrian);
         tv_jam = findViewById(R.id.tv_jam);
         tv_status = findViewById(R.id.tv_status);
         rl_hari_ini = findViewById(R.id.rl_hari_ini);
-        tv_kosong.setVisibility(View.GONE);
         mPreferences = getApplicationContext().getSharedPreferences(my_shared_preferences, MODE_PRIVATE);
         nama = mPreferences.getString("NAMA", "");
 
@@ -79,7 +90,7 @@ public class HistoryPasienActivity extends AppCompatActivity {
 
                 if (status_antrian.equals("Tunggu")) {
 
-                    dialog = new AlertDialog.Builder(HistoryPasienActivity.this);
+                    dialog = new AlertDialog.Builder(RiwayatPasienActivity.this);
                     LayoutInflater inflater = getLayoutInflater();
                     dialogView = inflater.inflate(R.layout.dialog_jekel, null);
                     dialog.setView(dialogView);
@@ -93,7 +104,7 @@ public class HistoryPasienActivity extends AppCompatActivity {
                     tv_laki.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            new SweetAlertDialog(HistoryPasienActivity.this, SweetAlertDialog.WARNING_TYPE)
+                            new SweetAlertDialog(RiwayatPasienActivity.this, SweetAlertDialog.WARNING_TYPE)
                                     .setTitleText("Penundahan")
                                     .setContentText("Ingin Menunda Antrian ?")
                                     .setCancelButton("Tidak", new SweetAlertDialog.OnSweetClickListener() {
@@ -118,7 +129,7 @@ public class HistoryPasienActivity extends AppCompatActivity {
                     tv_perempuan.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            new SweetAlertDialog(HistoryPasienActivity.this, SweetAlertDialog.WARNING_TYPE)
+                            new SweetAlertDialog(RiwayatPasienActivity.this, SweetAlertDialog.WARNING_TYPE)
                                     .setTitleText("Pembatalan")
                                     .setContentText("Ingin Membatalkan Antrian ?")
                                     .setCancelButton("Tidak", new SweetAlertDialog.OnSweetClickListener() {
@@ -143,7 +154,7 @@ public class HistoryPasienActivity extends AppCompatActivity {
 
                 } else {
 
-                    dialog = new AlertDialog.Builder(HistoryPasienActivity.this);
+                    dialog = new AlertDialog.Builder(RiwayatPasienActivity.this);
                     LayoutInflater inflater = getLayoutInflater();
                     dialogView = inflater.inflate(R.layout.dialog_jekel, null);
                     dialog.setView(dialogView);
@@ -157,7 +168,7 @@ public class HistoryPasienActivity extends AppCompatActivity {
                     tv_laki.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            new SweetAlertDialog(HistoryPasienActivity.this, SweetAlertDialog.WARNING_TYPE)
+                            new SweetAlertDialog(RiwayatPasienActivity.this, SweetAlertDialog.WARNING_TYPE)
                                     .setTitleText("Lanjut")
                                     .setContentText("Ingin Melanjutkan Antrian ?")
                                     .setCancelButton("Tidak", new SweetAlertDialog.OnSweetClickListener() {
@@ -182,7 +193,7 @@ public class HistoryPasienActivity extends AppCompatActivity {
                     tv_perempuan.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            new SweetAlertDialog(HistoryPasienActivity.this, SweetAlertDialog.WARNING_TYPE)
+                            new SweetAlertDialog(RiwayatPasienActivity.this, SweetAlertDialog.WARNING_TYPE)
                                     .setTitleText("Pembatalan")
                                     .setContentText("Ingin Membatalkan Antrian ?")
                                     .setCancelButton("Tidak", new SweetAlertDialog.OnSweetClickListener() {
@@ -216,7 +227,6 @@ public class HistoryPasienActivity extends AppCompatActivity {
 
         cekStatusskali();
         cekStatusskaliTunda();
-        getDataRiwayat(nama);
 
     }
 
@@ -235,21 +245,21 @@ public class HistoryPasienActivity extends AppCompatActivity {
             public void onResponse(Call<ResponsModelTambah> call, Response<ResponsModelTambah> response) {
                 pDialog.dismiss();
                 if (response.body().getKode().equals("1")) {
-                    new SweetAlertDialog(HistoryPasienActivity.this, SweetAlertDialog.SUCCESS_TYPE)
+                    new SweetAlertDialog(RiwayatPasienActivity.this, SweetAlertDialog.SUCCESS_TYPE)
                             .setTitleText("Success..")
                             .setContentText("Berhasil Membatalkan Antrian")
                             .setConfirmButton("Ok", new SweetAlertDialog.OnSweetClickListener() {
                                 @Override
                                 public void onClick(SweetAlertDialog sweetAlertDialog) {
                                     sweetAlertDialog.dismiss();
-                                    getDataRiwayat(nama);
+//                                    getDataRiwayat(nama);
                                     cekStatusskali();
                                 }
                             })
                             .show();
                 } else {
 
-                    new SweetAlertDialog(HistoryPasienActivity.this, SweetAlertDialog.ERROR_TYPE)
+                    new SweetAlertDialog(RiwayatPasienActivity.this, SweetAlertDialog.ERROR_TYPE)
                             .setTitleText("Mohon Maaf...")
                             .setContentText("Terjadi Kesalahan!")
                             .show();
@@ -259,7 +269,7 @@ public class HistoryPasienActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ResponsModelTambah> call, Throwable t) {
                 pDialog.dismiss();
-                new SweetAlertDialog(HistoryPasienActivity.this, SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialog(RiwayatPasienActivity.this, SweetAlertDialog.ERROR_TYPE)
                         .setTitleText("Mohon Maaf...")
                         .setContentText("Terjadi Kesalahan!")
                         .show();
@@ -283,21 +293,21 @@ public class HistoryPasienActivity extends AppCompatActivity {
             public void onResponse(Call<ResponsModelTambah> call, Response<ResponsModelTambah> response) {
                 pDialog.dismiss();
                 if (response.body().getKode().equals("1")) {
-                    new SweetAlertDialog(HistoryPasienActivity.this, SweetAlertDialog.SUCCESS_TYPE)
+                    new SweetAlertDialog(RiwayatPasienActivity.this, SweetAlertDialog.SUCCESS_TYPE)
                             .setTitleText("Success..")
                             .setContentText("Berhasil Menunda Antrian")
                             .setConfirmButton("Ok", new SweetAlertDialog.OnSweetClickListener() {
                                 @Override
                                 public void onClick(SweetAlertDialog sweetAlertDialog) {
                                     sweetAlertDialog.dismiss();
-                                    getDataRiwayat(nama);
+//                                    getDataRiwayat(nama);
                                     cekStatusskaliTunda();
                                 }
                             })
                             .show();
                 } else {
 
-                    new SweetAlertDialog(HistoryPasienActivity.this, SweetAlertDialog.ERROR_TYPE)
+                    new SweetAlertDialog(RiwayatPasienActivity.this, SweetAlertDialog.ERROR_TYPE)
                             .setTitleText("Mohon Maaf...")
                             .setContentText("Terjadi Kesalahan!")
                             .show();
@@ -307,7 +317,7 @@ public class HistoryPasienActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ResponsModelTambah> call, Throwable t) {
                 pDialog.dismiss();
-                new SweetAlertDialog(HistoryPasienActivity.this, SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialog(RiwayatPasienActivity.this, SweetAlertDialog.ERROR_TYPE)
                         .setTitleText("Mohon Maaf...")
                         .setContentText("Terjadi Kesalahan!")
                         .show();
@@ -332,21 +342,21 @@ public class HistoryPasienActivity extends AppCompatActivity {
                 pDialog.dismiss();
                 assert response.body() != null;
                 if (response.body().getKode().equals("1")) {
-                    new SweetAlertDialog(HistoryPasienActivity.this, SweetAlertDialog.SUCCESS_TYPE)
+                    new SweetAlertDialog(RiwayatPasienActivity.this, SweetAlertDialog.SUCCESS_TYPE)
                             .setTitleText("Success..")
                             .setContentText("Berhasil Melanjutkan Antrian")
                             .setConfirmButton("Ok", new SweetAlertDialog.OnSweetClickListener() {
                                 @Override
                                 public void onClick(SweetAlertDialog sweetAlertDialog) {
                                     sweetAlertDialog.dismiss();
-                                    getDataRiwayat(nama);
+//                                    getDataRiwayat(nama);
                                     cekStatusskali();
                                 }
                             })
                             .show();
                 } else {
 
-                    new SweetAlertDialog(HistoryPasienActivity.this, SweetAlertDialog.ERROR_TYPE)
+                    new SweetAlertDialog(RiwayatPasienActivity.this, SweetAlertDialog.ERROR_TYPE)
                             .setTitleText("Mohon Maaf...")
                             .setContentText("Terjadi Kesalahan!")
                             .show();
@@ -356,97 +366,13 @@ public class HistoryPasienActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ResponsModelTambah> call, Throwable t) {
                 pDialog.dismiss();
-                new SweetAlertDialog(HistoryPasienActivity.this, SweetAlertDialog.ERROR_TYPE)
+                new SweetAlertDialog(RiwayatPasienActivity.this, SweetAlertDialog.ERROR_TYPE)
                         .setTitleText("Mohon Maaf...")
                         .setContentText("Terjadi Kesalahan!")
                         .show();
             }
         });
 
-    }
-
-    private void getDataRiwayat(String nama) {
-
-        ApiRequestAntrian apiRequestAntrian = RetroServerAntrian.getClient().create(ApiRequestAntrian.class);
-        Call<List<getDataAntrianOneModel>> listCall = apiRequestAntrian.getAntrianRiwayat(nama);
-        listCall.enqueue(new Callback<List<getDataAntrianOneModel>>() {
-            @Override
-            public void onResponse(Call<List<getDataAntrianOneModel>> call, Response<List<getDataAntrianOneModel>> response) {
-                if (response.isSuccessful()) {
-                    if (response.body().isEmpty()) {
-                        tv_kosong.setVisibility(View.VISIBLE);
-                        rv_riwayat.setVisibility(View.GONE);
-                    } else {
-                        tv_kosong.setVisibility(View.GONE);
-                        rv_riwayat.setVisibility(View.VISIBLE);
-                        oneModels = (ArrayList<getDataAntrianOneModel>) response.body();
-                        RiwayatAdapter riwayatAdapter = new RiwayatAdapter(HistoryPasienActivity.this, oneModels);
-                        rv_riwayat.setLayoutManager(new LinearLayoutManager(HistoryPasienActivity.this));
-                        rv_riwayat.setAdapter(riwayatAdapter);
-                    }
-
-                } else {
-                    tv_kosong.setVisibility(View.VISIBLE);
-                    rv_riwayat.setVisibility(View.GONE);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<getDataAntrianOneModel>> call, Throwable t) {
-                tv_kosong.setVisibility(View.VISIBLE);
-                rv_riwayat.setVisibility(View.GONE);
-
-            }
-        });
-
-    }
-
-    private void cekStatusskali() {
-
-        ApiRequestAntrian apiRequestAntrian = RetroServerAntrian.getClient().create(ApiRequestAntrian.class);
-        Call<List<getDataAntrianOneModel>> getantrianstatus = apiRequestAntrian.getSingleData(nama, tanggal, "Tunggu");
-        getantrianstatus.enqueue(new Callback<List<getDataAntrianOneModel>>() {
-            @Override
-            public void onResponse(Call<List<getDataAntrianOneModel>> call, Response<List<getDataAntrianOneModel>> response) {
-                if (response.isSuccessful()) {
-
-                    assert response.body() != null;
-                    if (!response.body().isEmpty()) {
-                        rl_hari_ini.setVisibility(View.VISIBLE);
-                        for (int i = 0; i < response.body().size(); i++) {
-                            kode_db = response.body().get(i).getKode_antrian();
-                            jam_antrian = response.body().get(i).getJam_antrian();
-                            status_antrian = response.body().get(i).getStatus();
-                            tanggal_db = response.body().get(i).getTanggal_antrian();
-
-                            if (jam_antrian.equals("08.00")) {
-                                kode_antrian = "PS-" + "01-" + "00" + kode_db;
-                            } else if (jam_antrian.equals("11.00")) {
-                                kode_antrian = "PS-" + "02-" + "00" + kode_db;
-                            } else if (jam_antrian.equals("14.00")) {
-                                kode_antrian = "PS-" + "03-" + "00" + kode_db;
-                            }
-
-                            tv_no_antrian.setText(kode_antrian);
-                            if (status_antrian.equals("Tunggu")) {
-                                tv_status.setText("Terjadwal");
-                            }
-                            tv_jam.setText(jam_antrian);
-
-                        }
-                    } else {
-                        rl_hari_ini.setVisibility(View.GONE);
-                    }
-                } else {
-                    rl_hari_ini.setVisibility(View.GONE);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<getDataAntrianOneModel>> call, Throwable t) {
-                rl_hari_ini.setVisibility(View.GONE);
-            }
-        });
     }
 
     private void cekStatusskaliTunda() {
@@ -496,4 +422,54 @@ public class HistoryPasienActivity extends AppCompatActivity {
             }
         });
     }
+
+
+    private void cekStatusskali() {
+
+        ApiRequestAntrian apiRequestAntrian = RetroServerAntrian.getClient().create(ApiRequestAntrian.class);
+        Call<List<getDataAntrianOneModel>> getantrianstatus = apiRequestAntrian.getSingleData(nama, tanggal, "Tunggu");
+        getantrianstatus.enqueue(new Callback<List<getDataAntrianOneModel>>() {
+            @Override
+            public void onResponse(Call<List<getDataAntrianOneModel>> call, Response<List<getDataAntrianOneModel>> response) {
+                if (response.isSuccessful()) {
+
+                    assert response.body() != null;
+                    if (!response.body().isEmpty()) {
+                        rl_hari_ini.setVisibility(View.VISIBLE);
+                        for (int i = 0; i < response.body().size(); i++) {
+                            kode_db = response.body().get(i).getKode_antrian();
+                            jam_antrian = response.body().get(i).getJam_antrian();
+                            status_antrian = response.body().get(i).getStatus();
+                            tanggal_db = response.body().get(i).getTanggal_antrian();
+
+                            if (jam_antrian.equals("08.00")) {
+                                kode_antrian = "PS-" + "01-" + "00" + kode_db;
+                            } else if (jam_antrian.equals("11.00")) {
+                                kode_antrian = "PS-" + "02-" + "00" + kode_db;
+                            } else if (jam_antrian.equals("14.00")) {
+                                kode_antrian = "PS-" + "03-" + "00" + kode_db;
+                            }
+
+                            tv_no_antrian.setText(kode_antrian);
+                            if (status_antrian.equals("Tunggu")) {
+                                tv_status.setText("Terjadwal");
+                            }
+                            tv_jam.setText(jam_antrian);
+
+                        }
+                    } else {
+                        rl_hari_ini.setVisibility(View.GONE);
+                    }
+                } else {
+                    rl_hari_ini.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<getDataAntrianOneModel>> call, Throwable t) {
+                rl_hari_ini.setVisibility(View.GONE);
+            }
+        });
+    }
+
 }

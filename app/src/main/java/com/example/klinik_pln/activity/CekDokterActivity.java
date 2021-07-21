@@ -45,8 +45,17 @@ public class CekDokterActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
 
     private RelativeLayout cv1;
+    private TextView tv_jam_dokter;
+    private TextView tv_nama;
+
     private RelativeLayout cv2;
+    private TextView tv_jam_dokter1;
+    private TextView tv_nama1;
+
     private RelativeLayout cv3;
+    private TextView tv_jam_dokter2;
+    private TextView tv_nama2;
+
     private RelativeLayout container_dialog;
 
     private ImageView img_close;
@@ -87,6 +96,13 @@ public class CekDokterActivity extends AppCompatActivity {
 
         mPreferences = getApplicationContext().getSharedPreferences(my_shared_preferences, MODE_PRIVATE);
         nama = mPreferences.getString("NAMA", "");
+
+        tv_jam_dokter = findViewById(R.id.tv_jam_dokter);
+        tv_nama = findViewById(R.id.tv_nama);
+        tv_jam_dokter1 = findViewById(R.id.tv_jam_dokter1);
+        tv_nama1 = findViewById(R.id.tv_nama1);
+        tv_jam_dokter2 = findViewById(R.id.tv_jam_dokter2);
+        tv_nama2 = findViewById(R.id.tv_nama2);
 
         tv_btn_ambil = findViewById(R.id.tv_btn_ambil);
         btn_ambil_antrian = findViewById(R.id.btn_ambil_antrian);
@@ -140,8 +156,10 @@ public class CekDokterActivity extends AppCompatActivity {
         DateFormat dateFormat = new SimpleDateFormat("EEEE, dd MMMM yyyy");
         Date date = new Date();
         tanggal_now = dateFormat.format(date);
-
         cekStatus();
+        getDokterPagi();
+        getDokterSiang();
+        getDokterSoreh();
 
     }
 
@@ -328,29 +346,76 @@ public class CekDokterActivity extends AppCompatActivity {
 
     }
 
-    private void readDokterabsen() {
-//        pd.setMessage("Proses ... ");
-//        pd.setCancelable(false);
-//        pd.show();
-//        ApiRequestDoketr apiRequestDoketr = RetroServerDokter.getClient().create(ApiRequestDoketr.class);
-//        Call<ResponsModelTambah> getabsenDokter = apiRequestDoketr.getabsenDokter();
-//        getabsenDokter.enqueue(new Callback<ResponsModelTambah>() {
-//            @Override
-//            public void onResponse(Call<ResponsModelTambah> call, Response<ResponsModelTambah> response) {
-//                pd.hide();
-//                String kode = response.body().getKode();
-//                if (kode.equals("1")){
-//                    modelList = response.body().getResultAbsenDokter();
-//                    rv_dokter.setLayoutManager(new LinearLayoutManager(CekDokterActivity.this));
-//                    adapter = new AbsenDokterAdapter(CekDokterActivity.this, modelList);
-//                    rv_dokter.setAdapter(adapter);
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ResponsModelTambah> call, Throwable t) {
-//                pd.hide();
-//            }
-//        });
+    private void getDokterPagi(){
+        ApiRequestDoketr apiRequestDoketr = RetroServerDokter.getClient().create(ApiRequestDoketr.class);
+        Call<List<DokterModel>> getdataDokterJam = apiRequestDoketr.getdataDokterJam("08.00");
+        getdataDokterJam.enqueue(new Callback<List<DokterModel>>() {
+            @Override
+            public void onResponse(Call<List<DokterModel>> call, Response<List<DokterModel>> response) {
+                if (response.isSuccessful()) {
+                    if (!response.body().isEmpty()) {
+                        for (int i = 0; i < response.body().size(); i++) {
+                            tv_nama.setText("Dokter : "+ response.body().get(i).getNama_lengkap());
+                        }
+                    } else {
+                        tv_nama.setText(" - ");
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<DokterModel>> call, Throwable t) {
+                tv_nama.setText(" - ");
+            }
+        });
     }
+
+    private void getDokterSiang(){
+        ApiRequestDoketr apiRequestDoketr = RetroServerDokter.getClient().create(ApiRequestDoketr.class);
+        Call<List<DokterModel>> getdataDokterJam = apiRequestDoketr.getdataDokterJam("11.00");
+        getdataDokterJam.enqueue(new Callback<List<DokterModel>>() {
+            @Override
+            public void onResponse(Call<List<DokterModel>> call, Response<List<DokterModel>> response) {
+                if (response.isSuccessful()) {
+                    if (!response.body().isEmpty()) {
+                        for (int i = 0; i < response.body().size(); i++) {
+                            tv_nama1.setText("Dokter : "+ response.body().get(i).getNama_lengkap());
+                        }
+                    } else {
+                        tv_nama1.setText(" - ");
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<DokterModel>> call, Throwable t) {
+                tv_nama1.setText(" - ");
+            }
+        });
+    }
+
+    private void getDokterSoreh(){
+        ApiRequestDoketr apiRequestDoketr = RetroServerDokter.getClient().create(ApiRequestDoketr.class);
+        Call<List<DokterModel>> getdataDokterJam = apiRequestDoketr.getdataDokterJam("14.00");
+        getdataDokterJam.enqueue(new Callback<List<DokterModel>>() {
+            @Override
+            public void onResponse(Call<List<DokterModel>> call, Response<List<DokterModel>> response) {
+                if (response.isSuccessful()) {
+                    if (!response.body().isEmpty()) {
+                        for (int i = 0; i < response.body().size(); i++) {
+                            tv_nama2.setText("Dokter : "+ response.body().get(i).getNama_lengkap());
+                        }
+                    } else {
+                        tv_nama2.setText(" - ");
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<DokterModel>> call, Throwable t) {
+                tv_nama2.setText(" - ");
+            }
+        });
+    }
+
 }

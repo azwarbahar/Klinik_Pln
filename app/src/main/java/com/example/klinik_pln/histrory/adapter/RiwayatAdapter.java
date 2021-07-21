@@ -1,4 +1,4 @@
-package com.example.klinik_pln.histrory;
+package com.example.klinik_pln.histrory.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;

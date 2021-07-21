@@ -15,8 +15,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
-        <activity android:name=".activity.ProfilePasienActivity"></activity>
+        android:usesCleartextTraffic="true"
+        tools:targetApi="m">
+        <activity android:name=".histrory.RiwayatPasienActivity"></activity>
+        <activity android:name=".activity.ProfilePasienActivity" />
         <activity android:name=".antrian.antrianpertama.AntrianPertamaActivity" />
         <activity android:name=".antrian.antriankedua.AntrianKeduaActivity" />
         <activity android:name=".antrian.antrianketiga.AntrianKetigaActivity" />

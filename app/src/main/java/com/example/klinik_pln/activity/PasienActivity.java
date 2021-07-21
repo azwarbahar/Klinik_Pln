@@ -16,6 +16,7 @@ import androidx.cardview.widget.CardView;
 
 import com.example.klinik_pln.R;
 import com.example.klinik_pln.histrory.HistoryPasienActivity;
+import com.example.klinik_pln.histrory.RiwayatPasienActivity;
 import com.example.klinik_pln.model.AntrianLastDoneModel;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -113,24 +114,24 @@ public class PasienActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                new SweetAlertDialog(PasienActivity.this, SweetAlertDialog.WARNING_TYPE)
-                        .setTitleText("Profile")
-                        .setContentText("Ingin Masuk Halaman Profile ?")
-                        .setCancelButton("Tidak", new SweetAlertDialog.OnSweetClickListener() {
-                            @Override
-                            public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                sweetAlertDialog.dismiss();
-                            }
-                        })
-                        .setConfirmButton("Ok", new SweetAlertDialog.OnSweetClickListener() {
-                            @Override
-                            public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                sweetAlertDialog.dismiss();
-                                Intent intent = new Intent(PasienActivity.this, ProfilePasienActivity.class);
-                                startActivity(intent);
-                            }
-                        })
-                        .show();
+//                new SweetAlertDialog(PasienActivity.this, SweetAlertDialog.WARNING_TYPE)
+//                        .setTitleText("Profile")
+//                        .setContentText("Ingin Masuk Halaman Profile ?")
+//                        .setCancelButton("Tidak", new SweetAlertDialog.OnSweetClickListener() {
+//                            @Override
+//                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+//                                sweetAlertDialog.dismiss();
+//                            }
+//                        })
+//                        .setConfirmButton("Ok", new SweetAlertDialog.OnSweetClickListener() {
+//                            @Override
+//                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+//                                sweetAlertDialog.dismiss();
+                Intent intent = new Intent(PasienActivity.this, ProfilePasienActivity.class);
+                startActivity(intent);
+//                            }
+//                        })
+//                        .show();
 
             }
         });
@@ -139,24 +140,24 @@ public class PasienActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                new SweetAlertDialog(PasienActivity.this, SweetAlertDialog.WARNING_TYPE)
-                        .setTitleText("Jadwal Doket")
-                        .setContentText("Ingin Masuk Halaman Jadwal ?")
-                        .setCancelButton("Tidak", new SweetAlertDialog.OnSweetClickListener() {
-                            @Override
-                            public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                sweetAlertDialog.dismiss();
-                            }
-                        })
-                        .setConfirmButton("Ok", new SweetAlertDialog.OnSweetClickListener() {
-                            @Override
-                            public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                sweetAlertDialog.dismiss();
-                                Intent intent = new Intent(PasienActivity.this, CekDokterActivity.class);
-                                startActivity(intent);
-                            }
-                        })
-                        .show();
+//                new SweetAlertDialog(PasienActivity.this, SweetAlertDialog.WARNING_TYPE)
+//                        .setTitleText("Jadwal Doket")
+//                        .setContentText("Ingin Masuk Halaman Jadwal ?")
+//                        .setCancelButton("Tidak", new SweetAlertDialog.OnSweetClickListener() {
+//                            @Override
+//                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+//                                sweetAlertDialog.dismiss();
+//                            }
+//                        })
+//                        .setConfirmButton("Ok", new SweetAlertDialog.OnSweetClickListener() {
+//                            @Override
+//                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+//                                sweetAlertDialog.dismiss();
+                Intent intent = new Intent(PasienActivity.this, CekDokterActivity.class);
+                startActivity(intent);
+//                            }
+//                        })
+//                        .show();
             }
         });
 
@@ -164,24 +165,24 @@ public class PasienActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                new SweetAlertDialog(PasienActivity.this, SweetAlertDialog.WARNING_TYPE)
-                        .setTitleText("History")
-                        .setContentText("Ingin Masuk Halaman History ?")
-                        .setCancelButton("Tidak", new SweetAlertDialog.OnSweetClickListener() {
-                            @Override
-                            public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                sweetAlertDialog.dismiss();
-                            }
-                        })
-                        .setConfirmButton("Ok", new SweetAlertDialog.OnSweetClickListener() {
-                            @Override
-                            public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                sweetAlertDialog.dismiss();
-                                Intent intent = new Intent(PasienActivity.this, HistoryPasienActivity.class);
-                                startActivity(intent);
-                            }
-                        })
-                        .show();
+//                new SweetAlertDialog(PasienActivity.this, SweetAlertDialog.WARNING_TYPE)
+//                        .setTitleText("History")
+//                        .setContentText("Ingin Masuk Halaman History ?")
+//                        .setCancelButton("Tidak", new SweetAlertDialog.OnSweetClickListener() {
+//                            @Override
+//                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+//                                sweetAlertDialog.dismiss();
+//                            }
+//                        })
+//                        .setConfirmButton("Ok", new SweetAlertDialog.OnSweetClickListener() {
+//                            @Override
+//                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+//                                sweetAlertDialog.dismiss();
+                Intent intent = new Intent(PasienActivity.this, RiwayatPasienActivity.class);
+                startActivity(intent);
+//                            }
+//                        })
+//                        .show();
             }
         });
 
@@ -189,25 +190,25 @@ public class PasienActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                new SweetAlertDialog(PasienActivity.this, SweetAlertDialog.WARNING_TYPE)
-                        .setTitleText("Lokasi Apotek")
-                        .setContentText("Ingin Masuk Halaman Lokasi Apotek ?")
-                        .setCancelButton("Tidak", new SweetAlertDialog.OnSweetClickListener() {
-                            @Override
-                            public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                sweetAlertDialog.dismiss();
-                            }
-                        })
-                        .setConfirmButton("Ok", new SweetAlertDialog.OnSweetClickListener() {
-                            @Override
-                            public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                sweetAlertDialog.dismiss();
+//                new SweetAlertDialog(PasienActivity.this, SweetAlertDialog.WARNING_TYPE)
+//                        .setTitleText("Lokasi Apotek")
+//                        .setContentText("Ingin Masuk Halaman Lokasi Apotek ?")
+//                        .setCancelButton("Tidak", new SweetAlertDialog.OnSweetClickListener() {
+//                            @Override
+//                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+//                                sweetAlertDialog.dismiss();
+//                            }
+//                        })
+//                        .setConfirmButton("Ok", new SweetAlertDialog.OnSweetClickListener() {
+//                            @Override
+//                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+//                                sweetAlertDialog.dismiss();
 
-                                Intent intent = new Intent(PasienActivity.this, JalanApotekActivity.class);
-                                startActivity(intent);
-                            }
-                        })
-                        .show();
+                Intent intent = new Intent(PasienActivity.this, JalanApotekActivity.class);
+                startActivity(intent);
+//                            }
+//                        })
+//                        .show();
 
             }
         });
